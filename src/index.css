@@ -1,13 +1,21 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, 
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  /* 
+  The rem unit will use this size as reference, 
+  it's set to a percentage to keep the users ability to change the root font-size 
+  (bad practice to set it with px) 
+  */
+  font-size: 62.5%; /* This equals to 10px (10/16 = 0.625, 16px is the browsers default size) */
+}
+
+body {
+  box-sizing: border-box; 
+  font-family: 'Montserrat', sans-serif;
 }
