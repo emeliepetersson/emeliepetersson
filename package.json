@@ -45,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "@shinedigital/eslint-config": "git+ssh://git@github.com:cityweb-halland/eslint-config-cw.git#main",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-react": "^7.32.2",
