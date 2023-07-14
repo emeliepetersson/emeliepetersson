@@ -1,33 +1,33 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { desktop, tablet } from './cssVariables';
-import { StyledSubHeadingProps } from './App.types';
+import Announcement from './Components/Announcement/Announcement';
+import Heading from './Components/Heading/Heading';
+import SubHeading from './Components/SubHeading/SubHeading';
 
 const App = () => {
 	return (
 		<ScWrapper>
-			<ScAnnouncement>
-				Under construction!
-			</ScAnnouncement>
+			<Announcement title="Under construction!" />
 			<ScColumn>
 				<div>
-					<ScHeading>
+					<Heading>
 						Hello 
 						{' '}
 						<ScEmoji>
 							👋🏻
 						</ScEmoji>
 						{' '}
-					</ScHeading>
-					<ScSubHeading isBig>
+					</Heading>
+					<SubHeading isBig>
 						My name is Emelie Petersson.
-					</ScSubHeading>
-					<ScSubHeading>
+					</SubHeading>
+					<SubHeading isBig>
 						{'I\'m a front-end developer '}
 						<ScEmoji>
 							👩‍💻
 						</ScEmoji>
-					</ScSubHeading>
+					</SubHeading>
 				</div>
 				<ScContact>
 					<ScLink href="mailto:peterssonemelie@hotmail.com">
@@ -77,24 +77,6 @@ const ScColumn = styled.div`
   }
 `;
 
-const ScHeading = styled.h1`
-  background-image: linear-gradient(to right, #bbd9ea, #bbd9ea, #bbd9ea, #e4bbea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: 48px;
-  letter-spacing: 1px;
-`;
-
-const ScSubHeading = styled.h2<StyledSubHeadingProps>`
-  background-image: linear-gradient(to right, #bbd9ea, #e4bbea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: ${props => props.isBig ? '32' : '24'}px;
-  line-height: 1.3;
-`;
-
 const ScEmoji = styled.span`
   color: white;
 `;
@@ -112,28 +94,5 @@ const ScLink = styled.a`
 
   @media screen and (min-width: ${tablet}) {
     font-size: 24px;
-  }
-`;
-
-const ScAnnouncement = styled.p`
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  margin: auto;
-  font-size: 40px;
-  z-index: 999;
-  width: 110%;
-  height: fit-content;
-  text-align: center;
-  transform: rotate(10deg) translateX(-20px);
-  padding: 8px;
-  background-color: #d9eabb;
-  color: white;
-
-  @media screen and (min-width: ${desktop}) {
-    transform: rotate(-12deg) translateX(-40px);
-    font-size: 56px;
   }
 `;
