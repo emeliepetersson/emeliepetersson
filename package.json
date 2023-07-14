@@ -23,8 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "install": "yarn install --production=NODE_ENV"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
