@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { SubHeadingProps, StyledSubHeadingProps } from './SubHeading.types';
 
 const SubHeading: React.FC<SubHeadingProps> = (props) => {
@@ -17,6 +17,6 @@ const ScSubHeading = styled.h2<StyledSubHeadingProps>`
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: ${props => props.isBig ? '32' : '24'}px;
+  font-size: ${(props: StyledSubHeadingProps) => props.isBig ? '32' : '24'}px;
   line-height: 1.3;
 `;
