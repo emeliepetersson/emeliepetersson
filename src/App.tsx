@@ -1,11 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { desktop, tablet } from './cssVariables';
-import Announcement from './Components/Announcement/Announcement';
 import Heading from './Components/Heading/Heading';
 import SubHeading from './Components/SubHeading/SubHeading';
+import client from './contentful';
+import Announcement from './Components/Announcement/Announcement';
 
 const App = () => {
+
+	/**
+	 * Fetches content from Contentful
+	 */
+	React.useEffect(() => {
+		client.getEntries()
+			.then((entries: any) => {
+		    console.log(entries);
+		  });
+	});
+
 	return (
 		<ScWrapper>
 			<Announcement title="Under construction!" />
