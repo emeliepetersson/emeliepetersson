@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AnnouncementProps } from './Announcement.types';
-import { desktop } from '../../cssVariables';
 
 const Announcement: React.FC<AnnouncementProps> = (props) => {
+
+	if(!props.isShowingAnnouncement) return null;
+  
 	return (
 		<ScAnnouncement>
 			{props.title}
@@ -28,10 +30,5 @@ const ScAnnouncement = styled.p`
   transform: rotate(10deg) translateX(-20px);
   padding: 8px;
   background-color: #d9eabb;
-  color: white;
-
-  @media screen and (min-width: ${desktop}) {
-    transform: rotate(-12deg) translateX(-40px);
-    font-size: 56px;
-  }
+  color: black;
 `;

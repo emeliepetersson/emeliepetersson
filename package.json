@@ -6,6 +6,7 @@
     "@fontsource-variable/playfair-display": "^5.0.19",
     "@fontsource/merriweather": "^5.0.8",
     "@fontsource/slabo-13px": "^5.0.18",
+    "@react-spring/web": "^9.7.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
