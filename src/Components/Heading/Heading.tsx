@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HeadingProps } from './Heading.types';
 
 const Heading: React.FC<HeadingProps> = (props) => {
+
 	return (
 		<ScHeading>
 			{props.children}
