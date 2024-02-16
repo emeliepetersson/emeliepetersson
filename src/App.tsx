@@ -17,12 +17,12 @@ const App = () => {
 	React.useEffect(() => {
 		client.getEntries()
 			.then((entries: any) => {
-		    console.log(entries);
+				// TODO: Do something with the entries
 		  });
 	});
 
 	return (
-		<ScWrapper onMouseMove={(ev) => AnimatedIllustrationRef.current?.onMouseMove(ev)}>
+		<ScWrapper onMouseMove={(ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => AnimatedIllustrationRef.current?.onMouseMove(ev)}>
 			<Announcement
 				title="Under construction!"
 				isShowingAnnouncement={true}
@@ -70,6 +70,8 @@ export default App;
 
 const ScWrapper = styled.div`
  	overflow: hidden;
+	padding: 50px;
+	position: relative;
 `;
 
 const ScEmoji = styled.span`
