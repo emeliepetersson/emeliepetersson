@@ -9,34 +9,34 @@ import { AnimatedIllustrationProps, AnimatedIllustrationRefFunctions } from './A
 // eslint-disable-next-line react/display-name
 const AnimatedIllustration = React.forwardRef<AnimatedIllustrationRefFunctions, AnimatedIllustrationProps>((props, ref) => {
 	// Starting position for the right eye
-	const [springsRightEye, api] = useSpring(() => ({
+	const [springsEye, eyeAPI] = useSpring(() => ({
 		from: { x: 0, y: 0 }
 	}));
 
-	// TODO: MAKE THIS WORK
+	// This is used to interpolate the eye position, so that the eye follows the mouse but doesn't move too much
 	const interpEye = to(
-		[springsRightEye.x, springsRightEye.y],
-		(x: number, y: number) => `translate(${x / 30 + 157},${y / 30 + 80 + 100 / 2}) scale(0.8)`
+		[springsEye.x, springsEye.y],
+		(x: number, y: number) => `translate(${x / 80}px,${y / 60}px)`
 	);
-	// Starting position for the left eye
-	const springsLeftEye = useSpring({
-		from: { x: 0, y: 0 },
-		to: { x: -10, y: -5 }
-	});
 
 	// Starting position for the mouth
-	const springsMouth = useSpring({
-		from: { y: 0 },
-		to: { y: -5 }
-	});
+	const [springsMouth, mouthAPI] = useSpring(() => ({
+		from: { scale: 1 }
+	}));
 
 	/**
-	 * This hook is used to be able to call the onMouseMove function from the parent component.
+	 * This hook is used to be able to call the provided functions from the parent component.
 	 * Read more about useImperativeHandle here: https://react.dev/reference/react/useImperativeHandle
 	 */
 	React.useImperativeHandle(ref, () => ({
 		onMouseMove(ev: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 			onMoveHandler(ev);
+		},
+		onMouseEnter() {
+			mouthAPI.start({ to: { scale: 1.2 }});
+		},
+		onMouseLeave() {
+			mouthAPI.start({ to: { scale: 1 }});
 		}
 	  }
 	));
@@ -47,11 +47,11 @@ const AnimatedIllustration = React.forwardRef<AnimatedIllustrationRefFunctions, 
      * @param {React.MouseEvent<HTMLDivElement, MouseEvent>} ev 
      * @returns {void}
      */
-	const onMoveHandler = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+	const onMoveHandler = React.useCallback((ev: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
 		const { clientX, clientY } = ev;
 
-		api.set({ x: clientX - window.innerWidth / 2, y: clientY - window.innerHeight / 2 });
-	};
+		eyeAPI.start({ to: { x: clientX - window.innerWidth / 2, y: clientY - window.innerHeight / 2 }});
+	}, [eyeAPI]);
 
 	return (
 		<svg
@@ -604,7 +604,7 @@ const AnimatedIllustration = React.forwardRef<AnimatedIllustrationRefFunctions, 
 
 			<animated.g
 				className="left-eye"
-				style={{ ...springsLeftEye }}
+				style={{ transform: interpEye }}
 			>
 				<g clipPath="url(#7755f47e00)">
 					<g clipPath="url(#6d515e9d32)">
@@ -660,7 +660,7 @@ const AnimatedIllustration = React.forwardRef<AnimatedIllustrationRefFunctions, 
 
 			<animated.g
 				className="mouth"
-				style={{ ...springsMouth }}
+				style={{ transformOrigin: 'center', ...springsMouth }}
 			>
 				<g clipPath="url(#c5617f8bf9)">
 					<g clipPath="url(#648c1fd531)">
